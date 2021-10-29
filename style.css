@@ -1,0 +1,28 @@
+.vis-container {
+    width: 100%;
+}
+
+.page {
+    width: 1024px;
+    background-color: white;
+    margin: auto;
+    padding: 50px;
+    padding-top: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#vis1 {
+    height: 500px;
+    width: 750px;
+}
+#vis2 {
+    height: 500px;
+    width: 750px;
+}
+#vis3 {
+    height: 500px;
+    width: 750px;
+}
+#vis4 {
+    height: 500px;
+    width: 750px;
+}
