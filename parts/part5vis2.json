@@ -1,0 +1,27 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 750,
+  "height": 500,
+  "title": {"text":"Total Crashes by Location","font":"sans-serif","color":"#3970af","fontSize":17},
+  
+  "projection": {"type": "equalEarth", "rotate": [-130, 0, 0]},
+  "data": {
+  "url": "https://raw.githubusercontent.com/nayeonwhale/Vega-Lite/main/australiaboundariesp2.json",
+  "format": {"type": "topojson", "feature": "STE_2021_AUST_GDA2020"}
+      },
+    "transform": [
+ {
+ "lookup": "properties.STE_NAME21",
+ "from": {
+      "data": { 
+        "url": "https://raw.githubusercontent.com/nayeonwhale/Vega-Lite/main/ardd_fatal_crashes2.csv"
+      },
+      "key":"State", "fields": ["Number Fatalities"] }
+      }
+    ],
+
+"mark": {"type": "geoshape", "stroke": "white"},
+"encoding": {"color":{"field": "properties.STE_NAME21","type": "nominal","title":"State"},
+"tooltip":{"field": "properties.STE_NAME21", "type": "nominal", "title": "State"}
+}
+}

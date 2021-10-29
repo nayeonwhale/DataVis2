@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Total Number of Crashes By Day","font":"sans-serif","color":"#3970af","fontSize":17},
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/nayeonwhale/Vega-Lite/main/ardd_fatal_crashes.csv"
+  },
+  "transform": [
+    {
+      "sort": [{"field": "State"}],
+      "window": [{"op": "count", "field": "count", "as": "State Count"}],
+      "frame": [null, 0]
+    }
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "aggregate": "count",
+      "field": "State Count",
+      "type": "quantitative",
+      "title": "Total Crashes"
+    },
+    "y": {
+      "field": "Dayweek",
+      "sort": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "title": ""
+    },
+    "color": {
+      "type": "nominal",
+      "field": "State",
+      "sort": [
+        "Vic",
+        "NSW",
+        "Qld",
+        "WA",
+        "SA",
+        "ACT",
+        "NT",
+        "Tas"
+      ],
+      "title": "State"
+    }
+  },
+  "config": {
+    "background": "white",
+    "axis": {
+      "titleColor": "#3970af",
+      "labelFont": "sans-serif",
+      "titleFontSize": 15,
+      "grid":false
+    }
+  }
+}

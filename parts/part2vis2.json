@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Crashes Timeline",
+    "color": "#3970af",
+    "fontSize": 17,
+    "font": "sans-serif"
+  },
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/nayeonwhale/Vega-Lite/main/ardd_fatal_crashes.csv"
+  },
+  "transform": [
+    {"filter": {"field": "Year", "timeUnit": "year", "range": [1988, 2019]}}
+  ],
+
+  "encoding": {
+    "x": {"type":"temporal",
+      "timeUnit": "year",
+      "scale": {"domain": [1988, 2019]},
+      "field": "Year",
+      "title": "Year"
+    },
+    "y": {
+      "aggregate": "count",
+      "field": "State",
+      "type": "quantitative",
+      "title": "Number of Crashes"
+    },
+    "color":{"condition":{"param": "hover","field": "State", "type": "nominal"},
+    "value":"grey"
+    },
+    "opacity":{"condition":{"param":"hover", "value": 1},
+    "value":0.2
+    }
+  },
+  "layer": [{
+    "params": [{
+      "name": "hover",
+      "value": [{"State": "Vic"}],
+      "select": {
+        "type": "point",
+        "fields": ["State"],
+        "on": "mouseover"
+      }
+    }],  
+    "mark": {"type": "line", "point": false}
+  }
+  ],
+    "config": {"background": "white","axis": {"grid":false,"titleColor":"#3970af","titleFont":"sans-serif"}}
+  }

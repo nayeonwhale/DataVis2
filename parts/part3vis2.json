@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Time of Day of Crashes",
+    "color": "#3970af",
+    "fontSize": 17,
+    "font": "sans-serif"
+  },
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/nayeonwhale/Vega-Lite/main/ardd_fatal_crashes.csv"
+  },
+  "encoding": {
+    "theta": {
+      "field": "Time of Day",
+      "aggregate": "count",
+      "type": "quantitative"
+    },
+    "color": {"condition":{"param": "hover","field": "Time of Day", "type": "nominal"},
+    "value":"grey"
+    },
+    "opacity":{"condition":{"param":"hover", "value": 1},
+    "value":0.2
+    }
+  },
+  "layer": [{
+    "params": [{
+      "name": "hover",
+      "select": {
+        "type": "point",
+        "fields": ["Time of Day"],
+        "on": "mouseover"
+      }
+    }],  
+      "mark": {"type":"arc", "innerRadius": 70,"stroke":"white"}
+  }
+  ],
+  "config": {
+    "background": "white",
+    "axis": {
+      "titleColor": "#3970af",
+      "labelColor": "#3970af",
+      "labelFont": "sans-serif",
+      "titleFontSize": 15
+    }
+  }
+}
